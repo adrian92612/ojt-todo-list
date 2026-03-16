@@ -1,28 +1,18 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Times New Roman", sans-serif;
-}
-
 body {
   background-color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  margin: 20px;
 }
 
 .container {
   background: white;
   padding: 2rem;
   border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 400px;
+  max-width: 300px;
+  margin: auto;
 }
 
 h1 {
   text-align: center;
-  color: #333;
-  margin-bottom: 1rem;
 }
