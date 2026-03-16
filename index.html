@@ -4,8 +4,205 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TODO LIST</title>
+
+    <style>
+      /* Reset & Base Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: #f4f7f6;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      /* App Container */
+      .todo-container {
+        background: white;
+        width: 100%;
+        max-width: 400px;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 1.5rem;
+      }
+
+      /* Input Section */
+      .input-group {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 1.5rem;
+      }
+
+      input[type="text"] {
+        flex-grow: 1;
+        padding: 10px;
+        border: 2px solid #ddd;
+        border-radius: 6px;
+        outline: none;
+        transition: border-color 0.3s;
+      }
+
+      input[type="text"]:focus {
+        border-color: #6c63ff;
+      }
+
+      button#add-btn {
+        padding: 10px 20px;
+        background-color: #6c63ff;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      /* Todo List Items */
+      ul {
+        list-style: none;
+      }
+
+      .todo-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .todo-item:last-child {
+        border-bottom: none;
+      }
+
+      .todo-text {
+        flex-grow: 1;
+        margin-right: 10px;
+        color: #444;
+      }
+
+      /* Completed State */
+      .completed .todo-text {
+        text-decoration: line-through;
+        color: #888;
+      }
+
+      /* Action Buttons */
+      .actions button {
+        margin-left: 5px;
+        padding: 5px 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .complete-btn {
+        background-color: #4caf50;
+        color: white;
+      }
+      .delete-btn {
+        background-color: #f44336;
+        color: white;
+      }
+    </style>
   </head>
   <body>
-    <h1>Todo List</h1>
+    <div class="todo-container">
+      <h1>Todo List</h1>
+
+      <div class="input-group">
+        <input type="text" id="todo-input" placeholder="Add a new task..." />
+        <button id="add-btn">Add</button>
+      </div>
+
+      <ul id="todo-list"></ul>
+    </div>
+
+    <script>
+      // 1. Select DOM elements
+      const todoInput = document.getElementById("todo-input");
+      const addBtn = document.getElementById("add-btn");
+      const todoList = document.getElementById("todo-list");
+
+      // 2. Initialize State: Load from localStorage or start with empty array
+      let todos = JSON.parse(localStorage.getItem("todos")) || [];
+
+      // 3. Render Function: Updates the UI based on the current state
+      function render() {
+        todoList.innerHTML = ""; // Clear current list
+
+        todos.forEach((todo) => {
+          const li = document.createElement("li");
+          li.className = `todo-item ${todo.completed ? "completed" : ""}`;
+          li.dataset.id = todo.id; // Store ID for event delegation
+
+          li.innerHTML = `
+        <span class="todo-text">${todo.text}</span>
+        <div class="actions">
+          <button class="complete-btn" title="Complete">✓</button>
+          <button class="delete-btn" title="Delete">✕</button>
+        </div>
+      `;
+          todoList.appendChild(li);
+        });
+
+        // Save to persistence whenever state changes
+        localStorage.setItem("todos", JSON.stringify(todos));
+      }
+
+      // 4. Logic: Add Todo
+      function addTodo() {
+        const text = todoInput.value.trim();
+        if (text === "") return;
+
+        const newTodo = {
+          id: Date.now(), // Unique ID based on timestamp
+          text: text,
+          completed: false,
+        };
+
+        todos.push(newTodo);
+        todoInput.value = ""; // Clear input
+        render();
+      }
+
+      // 5. Logic: Handle Actions (Complete/Delete) using Event Delegation
+      todoList.addEventListener("click", (e) => {
+        const todoId = Number(e.target.closest(".todo-item").dataset.id);
+
+        if (e.target.classList.contains("delete-btn")) {
+          // Remove item from array
+          todos = todos.filter((t) => t.id !== todoId);
+        }
+
+        if (e.target.classList.contains("complete-btn")) {
+          // Toggle completed status
+          const todo = todos.find((t) => t.id === todoId);
+          if (todo) todo.completed = !todo.completed;
+        }
+
+        render();
+      });
+
+      // 6. Listeners
+      addBtn.addEventListener("click", addTodo);
+
+      todoInput.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") addTodo();
+      });
+
+      // Initial render on page load
+      render();
+    </script>
   </body>
 </html>
