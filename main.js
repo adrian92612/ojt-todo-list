@@ -17,7 +17,7 @@ function handleClick() {
     input.value = "";
 
     const deleteBtn = document.createElement("button");
-    deleteBtn.textContent = "Delete";
+    deleteBtn.textContent = "X";
 
     li.appendChild(deleteBtn);
   }

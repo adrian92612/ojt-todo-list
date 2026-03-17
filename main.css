@@ -9,7 +9,7 @@ body {
 
 .app-container {
   background: white;
-  padding: 20px;
+  padding: 5;
   border-radius: 8px;
   width: 300px;
   text-align: center;
@@ -49,5 +49,19 @@ button:hover {
 }
 
 #todo-list li button {
-  margin-left: 10px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  width: 30px;
+  height: 25px;
+  cursor: pointer;
+  margin-right: -25px;
+}
+#todo-list li {
+  border: none;
+  border-bottom: 2px solid #cecece;
+  padding: 8px 4px;
+  width: 80%;
+  outline: none;
 }
