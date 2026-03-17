@@ -15,5 +15,10 @@ function handleClick() {
     list.appendChild(li);
 
     input.value = "";
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "Delete";
+
+    li.appendChild(deleteBtn);
   }
 }

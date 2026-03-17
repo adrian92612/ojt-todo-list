@@ -25,7 +25,7 @@ input {
 }
 
 button {
-  padding: 8px 12px;
+  padding: 6px 10px;
   background-color: #736e1f;
   color: white;
   border: none;
@@ -35,4 +35,19 @@ button {
 
 button:hover {
   background-color: #a39b50;
+}
+#todo-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+#todo-list li span {
+  flex: 1;
+  text-align: center;
+}
+
+#todo-list li button {
+  margin-left: 10px;
 }
