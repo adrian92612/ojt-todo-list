@@ -16,8 +16,13 @@ function handleClick() {
 
     input.value = "";
 
-    const deleteBtn = document.createElement("button");
-    deleteBtn.textContent = "X";
+    const checkBtn = document.createElement("check_button");
+    checkBtn.textContent = "✓";
+
+    li.appendChild(checkBtn);
+
+    const deleteBtn = document.createElement("delete_button");
+    deleteBtn.textContent = "✗";
 
     li.appendChild(deleteBtn);
   }
