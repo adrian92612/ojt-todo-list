@@ -78,3 +78,8 @@ li check_button {
   border-radius: 4px;
   color: white;
 }
+
+.completed {
+  text-decoration: line-through;
+  color: #aaa;
+}

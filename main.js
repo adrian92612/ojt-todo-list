@@ -5,7 +5,7 @@ const list = document.getElementById("todo-list");
 button.addEventListener("click", handleClick);
 
 function checkTodo(span) {
-  span.style.textDecoration = "line-through";
+  span.classList.toggle("completed");
 }
 
 function deleteTodo(list) {
