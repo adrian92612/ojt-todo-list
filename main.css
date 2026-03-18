@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
@@ -9,30 +15,66 @@ body {
 
 .app-container {
   background: white;
-  padding: 20px;
+  padding: 15px;
   border-radius: 8px;
-  width: 300px;
+  width: 380px;
   text-align: center;
 }
 
 .input-group {
   margin-top: 15px;
+  display: flex;
+  gap: 10px;
 }
 
 input {
   padding: 8px;
-  width: 65%;
+  flex-grow: 1;
+  border: 2px solid #cecece;
 }
 
 button {
-  padding: 8px 12px;
-  background-color: #736e1f;
+  padding: 6px 10px;
+  background-color: #5769f0;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 }
 
-button:hover {
-  background-color: #a39b50;
+li {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #cecece;
+  margin: 15px 2px;
+  overflow-wrap: anywhere;
+  text-align: left;
+  padding: 8px;
+  position: relative;
+}
+
+li check_button,
+li delete_button {
+  display: inline-block;
+  font-size: 14px;
+  cursor: pointer;
+}
+li delete_button {
+  margin-left: 5px;
+  background-color: red;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 4px;
+  color: white;
+}
+
+li check_button {
+  background-color: green;
+  margin-left: auto;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 4px;
+  color: white;
 }

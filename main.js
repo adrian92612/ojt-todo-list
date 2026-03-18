@@ -15,5 +15,15 @@ function handleClick() {
     list.appendChild(li);
 
     input.value = "";
+
+    const checkBtn = document.createElement("check_button");
+    checkBtn.textContent = "✓";
+
+    li.appendChild(checkBtn);
+
+    const deleteBtn = document.createElement("delete_button");
+    deleteBtn.textContent = "✗";
+
+    li.appendChild(deleteBtn);
   }
 }
